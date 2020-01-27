@@ -1,4 +1,4 @@
-package com.hallel.hallelsomevida
+package com.hallel.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
