@@ -2,7 +2,7 @@ package com.hallel.hallelsomevida
 
 import android.app.Application
 import com.hallel.data.dataModule
-import com.hallel.domain.domainModule
+import com.hallel.domain.di.domainModule
 import com.hallel.presentation.di.presentationModule
 import org.koin.core.context.startKoin
 

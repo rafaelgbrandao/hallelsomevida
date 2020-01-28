@@ -33,6 +33,8 @@ dependencies {
     implementation generalDeps.kotlin
     implementation generalDeps.koin
     implementation generalDeps.koin_viewmodel
+    implementation generalDeps.coroutines
+    implementation generalDeps.coroutines_adapter
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

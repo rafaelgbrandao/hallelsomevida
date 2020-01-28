@@ -10,7 +10,9 @@ android {
     defaultConfig {
         minSdkVersion app.minSdkVersion
         targetSdkVersion app.targetSdkVersion
-
+        versionCode app.versionCode
+        versionName app.versionName
+        
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -26,7 +28,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(path: ':domain')
+
     implementation generalDeps.kotlin
+    implementation generalDeps.lifecycle
+    implementation generalDeps.lifecycle_viewmodel
     implementation generalDeps.appcompatx
     implementation generalDeps.constraintlayout
     implementation generalDeps.corex
@@ -34,6 +41,8 @@ dependencies {
     implementation generalDeps.navigation_ui
     implementation generalDeps.koin
     implementation generalDeps.koin_viewmodel
+    implementation generalDeps.coroutines
+    implementation generalDeps.coroutines_adapter
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -1,7 +1,8 @@
-package com.hallel.presentation
+package com.hallel.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hallel.presentation.R
 
 class MainActivity : AppCompatActivity() {
 
