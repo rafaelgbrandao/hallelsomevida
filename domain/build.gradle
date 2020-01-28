@@ -31,6 +31,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':data')
+
     implementation generalDeps.kotlin
     implementation generalDeps.koin
     implementation generalDeps.koin_viewmodel

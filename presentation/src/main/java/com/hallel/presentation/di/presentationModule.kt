@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val presentationModule = module {
 
-    viewModel { SplashViewModel(get()) }
+    viewModel { SplashViewModel(get(), get()) }
 }

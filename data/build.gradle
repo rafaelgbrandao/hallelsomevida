@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: "../dependencies.gradle"
 apply from: "../version.gradle"
 
@@ -12,6 +13,8 @@ android {
         targetSdkVersion app.targetSdkVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "DATABASE_NAME", "\"hallel.db\""
     }
 
     buildTypes {
@@ -30,11 +33,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation generalDeps.kotlin
     implementation generalDeps.koin
     implementation generalDeps.koin_viewmodel
     implementation generalDeps.coroutines
     implementation generalDeps.coroutines_adapter
+    kapt generalDeps.room_compiler
+    implementation generalDeps.room_kotlin
+    implementation generalDeps.room
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -5,10 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hallel.domain.update.UpdateUseCase
+import com.hallel.domain.user.UserUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class SplashViewModel(private val updateUseCase: UpdateUseCase): ViewModel() {
+class SplashViewModel(
+    private val updateUseCase: UpdateUseCase,
+    private val userUseCase: UserUseCase
+): ViewModel() {
 
     fun showAppUpdateDialog(): LiveData<Unit> = lvLastVersionNumber
     private val lvLastVersionNumber = MutableLiveData<Unit>()
@@ -25,9 +31,10 @@ class SplashViewModel(private val updateUseCase: UpdateUseCase): ViewModel() {
     fun hasContentForUpdate(): LiveData<Boolean> = lvShowUpdateProgressBar
     private val lvShowUpdateProgressBar = MutableLiveData<Boolean>()
 
-    fun navigateToNextScreen(): LiveData<Unit> = lvNavigateToNextScreen
-    private val lvNavigateToNextScreen = MutableLiveData<Unit>()
+    fun navigateToNextScreen(): LiveData<Boolean> = lvNavigateToNextScreen
+    private val lvNavigateToNextScreen = MutableLiveData<Boolean>()
 
+    @FlowPreview
     fun onSearchForUpdate() {
         viewModelScope.launch {
             lvShowUpdateProgressBar.postValue(true)
@@ -45,4 +52,9 @@ class SplashViewModel(private val updateUseCase: UpdateUseCase): ViewModel() {
             else -> lvAppUpToDate.postValue(Unit)
         }
     }
+
+    fun onValidateUser() =
+        viewModelScope.launch(Dispatchers.IO) {
+            lvNavigateToNextScreen.postValue(userUseCase.isUserValid())
+        }
 }

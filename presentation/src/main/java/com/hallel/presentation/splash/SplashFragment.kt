@@ -1,5 +1,6 @@
 package com.hallel.presentation.splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -70,6 +71,15 @@ class SplashFragment: Fragment() {
             splashProgressBarContentUpdate.max = maxValue
             splashProgressBarContentUpdate.progress = currentProgress
         }
+
+        viewModel.navigateToNextScreen().observe(this) { hasUser ->
+            /*val nextScreen = when {
+                hasUser -> SplashFragment::class.java
+                else -> SplashFragment::class.java
+            }
+            startActivity(Intent(context, nextScreen))*/
+            Toast.makeText(context, "Next Screen", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun searchForUpdates() {
@@ -82,7 +92,6 @@ class SplashFragment: Fragment() {
             splashProgressBarContentUpdate,
             splashTextViewUpdateProgress
         )
-        Toast.makeText(context, "Validate User", Toast.LENGTH_LONG).show()
-        //viewModel.onValidateUser()
+        viewModel.onValidateUser()
     }
 }
