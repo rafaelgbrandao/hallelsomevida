@@ -32,7 +32,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation generalDeps.kotlin
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation generalDeps.koin
+    implementation generalDeps.koin_viewmodel
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

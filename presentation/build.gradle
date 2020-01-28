@@ -28,9 +28,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation generalDeps.kotlin
     implementation generalDeps.appcompatx
+    implementation generalDeps.constraintlayout
     implementation generalDeps.corex
     implementation generalDeps.navigation_fragment
     implementation generalDeps.navigation_ui
+    implementation generalDeps.koin
+    implementation generalDeps.koin_viewmodel
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
