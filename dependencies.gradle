@@ -46,7 +46,7 @@ ext.generalDeps = [
         appcompatx              : "androidx.appcompat:appcompat:$appCompatxVersion",
         corex                   : "androidx.core:core-ktx:$appCompatxVersion",
         constraintlayout        : "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
-        navigation              : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
+        navigation_fragment     : "androidx.navigation:navigation-fragment-ktx:$navigationVersion",
         navigation_ui           : "androidx.navigation:navigation-ui-ktx:$navigationVersion",
         kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
         lifecycle               : "androidx.lifecycle:lifecycle-livedata-ktx:$kotlin_lifecycle_version",
