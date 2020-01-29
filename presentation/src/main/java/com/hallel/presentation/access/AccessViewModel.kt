@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hallel.domain.user.UserFormErrors
 import com.hallel.domain.user.UserUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
@@ -29,10 +30,10 @@ class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
     private val lvNavigateToNextScreen = MutableLiveData<Unit>()
 
     fun onVerifyIfUserExist(userEmail: String) {
-        viewModelScope.launch(dispatcher) {
-            if (isValidEmail(userEmail)) {
+        viewModelScope.launch(Dispatchers.IO) {
+            if (userUseCase.isValidEmail(userEmail)) {
                 when {
-                    accessRepository.userAlreadyRegistered(userEmail) -> buildNavigation()
+                    userUseCase.userAlreadyRegistered(userEmail) -> lvNavigateToNextScreen.postValue(Unit)
                     else -> lvUserNotRegistered.postValue(Unit)
                 }
             } else {
@@ -49,10 +50,10 @@ class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
         isPrivacyPolicyChecked: Boolean
     ) {
         val errorList = mutableListOf<UserFormErrors>().apply {
-            if (!isValidName(name)) add(UserFormErrors.INVALID_NAME)
-            if (!isValidEmail(email)) add(UserFormErrors.INVALID_EMAIL)
-            if (!isValidPhone(phone)) add(UserFormErrors.INVALID_PHONE)
-            if (!isValidBirthday(birthday)) add(UserFormErrors.INVALID_BIRTHDAY)
+            if (!userUseCase.isValidName(name)) add(UserFormErrors.INVALID_NAME)
+            if (!userUseCase.isValidEmail(email)) add(UserFormErrors.INVALID_EMAIL)
+            if (!userUseCase.isValidPhone(phone)) add(UserFormErrors.INVALID_PHONE)
+            if (!userUseCase.isValidBirthday(birthday)) add(UserFormErrors.INVALID_BIRTHDAY)
             if (!isPrivacyPolicyChecked) add(UserFormErrors.PRIVACY_POLICE_NOT_CHECKED)
         }.toList()
         when {
@@ -62,15 +63,11 @@ class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
     }
 
     fun registerNewUser(name: String, email: String, phone: String, birthday: String) {
-        viewModelScope.launch(dispatcher) {
-            when (val result = accessRepository.registerNewUser(name, email, phone, birthday)) {
-                is Error -> {handleErrors(result.error) }
-                is Success -> {
-                    when {
-                        result.value -> lvNavigateToNextScreen.postValue(Unit)
-                        else -> lvErrorOnRegisterNewUser.postValue(Unit)
-                    }
-                }
+        viewModelScope.launch(Dispatchers.IO) {
+            when {
+                userUseCase.registerNewUser(name, email, phone, birthday) ->
+                    lvNavigateToNextScreen.postValue(Unit)
+                 else -> lvErrorOnRegisterNewUser.postValue(Unit)
             }
         }
     }

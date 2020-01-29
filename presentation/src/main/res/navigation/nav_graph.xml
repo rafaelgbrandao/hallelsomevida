@@ -8,5 +8,19 @@
         android:id="@+id/splashFragment"
         android:name="com.hallel.presentation.splash.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_accessFragment"
+            app:destination="@id/accessFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accessFragment"
+        android:name="com.hallel.presentation.access.AccessFragment"
+        android:label="AccessFragment"
+        tools:layout="@layout/fragment_access" />
+
 </navigation>
