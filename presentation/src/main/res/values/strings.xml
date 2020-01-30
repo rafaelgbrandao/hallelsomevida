@@ -1,3 +1,13 @@
 <resources>
+    <!-- App Title -->
     <string name="app_name">Hallel</string>
+
+    <!-- Update Dialog -->
+    <string name="dialog_update_title">Nova versão disponível</string>
+    <string name="dialog_update_message">Deseja atualizar?</string>
+    <string name="dialog_update_positive_button_text">Sim</string>
+    <string name="dialog_update_negative_button_text">Não</string>
+
+    <!-- Update Progress -->
+    <string name="progress_update_text">Atualizando</string>
 </resources>
