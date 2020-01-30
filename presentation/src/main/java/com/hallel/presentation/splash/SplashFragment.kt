@@ -1,11 +1,13 @@
 package com.hallel.presentation.splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hallel.presentation.BuildConfig
 import com.hallel.presentation.R
+import com.hallel.presentation.access.AccessFragment
 import com.hallel.presentation.base.BaseFragment
 import com.hallel.presentation.extensions.gone
 import com.hallel.presentation.extensions.goneViews
@@ -76,7 +78,7 @@ class SplashFragment: BaseFragment() {
                 else -> SplashFragment::class.java
             }
             startActivity(Intent(context, nextScreen))*/
-            showToast("Next Screen")
+            navigateToScreen(R.id.action_splashFragment_to_accessFragment)
         }
     }
 

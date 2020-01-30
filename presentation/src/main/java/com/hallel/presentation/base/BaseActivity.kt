@@ -3,6 +3,8 @@ package com.hallel.presentation.base
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import com.hallel.presentation.R
 
 open class BaseActivity: AppCompatActivity() {
 
@@ -37,5 +39,9 @@ open class BaseActivity: AppCompatActivity() {
 
     fun showToast(text: String, length: Int = Toast.LENGTH_LONG){
         Toast.makeText(this, text, length).show()
+    }
+
+    fun navigateToScreen(screen: Int) {
+        findNavController(R.id.nav_host_fragment).navigate(screen)
     }
 }

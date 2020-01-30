@@ -11,20 +11,23 @@
     <!-- Update Progress -->
     <string name="progress_update_text">Atualizando</string>
 
-    <string name="privacy_policy">Li e aceito a politica de privacidade</string>
-    <string name="birthday">Data de nascimento</string>
-    <string name="phone">Telefone</string>
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="access_title">Acessar</string>
-    <string name="invalid_birthday">Data de aniversário inválida</string>
-    <string name="invalid_phone">Telefone inválido</string>
-    <string name="invalid_name">Nome inválido</string>
-    <string name="invalid_email">Email inválido</string>
-    <string name="unchecked_privacy_policy_text">Para prosseguir é necessárioa aceitar a politica de privacidade</string>
-    <string name="privacy_policy_text">Politica de privacidade</string>
-    <string name="user_not_registered">Não encontramos seu cadastro. Registre para poder acessar o app</string>
-    <string name="register_title">Registrar</string>
-    <string name="fail_on_register_new_user">Ocorreu um erro ao registrar o usuário. Tente novamente mais tarde</string>
+    <!-- Access -->
+    <string name="access_btn_access">Ocorreu um erro ao registrar o usuário. Tente novamente mais tarde</string>
+    <string name="access_btn_register">Registrar</string>
+    <string name="access_txt_birthday">Data de nascimento</string>
+    <string name="access_txt_privacy_policy">Li e aceito a politica de privacidade</string>
+    <string name="access_hint_email">Email</string>
+    <string name="access_hint_phone">Telefone</string>
+    <string name="access_hint_name">Name</string>
+    <string name="access_txt_fail_on_register_new_user">Ocorreu um erro ao registrar o usuário. Tente novamente mais tarde</string>
+    <string name="access_txt_invalid_birthday">Data de aniversário inválida</string>
+    <string name="access_txt_invalid_phone">Telefone inválido</string>
+    <string name="access_txt_invalid_name">Nome inválido</string>
+    <string name="access_txt_invalid_email">Email inválido</string>
+    <string name="access_txt_login_title">Acessar</string>
+    <string name="access_txt_privacy_policy_text">Politica de privacidade</string>
+    <string name="access_txt_register_title">Registrar</string>
+    <string name="access_txt_unchecked_privacy_policy_text">Para prosseguir é necessário aceitar a politica de privacidade</string>
+    <string name="access_txt_user_not_registered">Não encontramos seu cadastro. Registre para poder acessar o app</string>
 
 </resources>

@@ -33,4 +33,8 @@ open class BaseFragment: Fragment() {
     fun showToast(text: String, length: Int = Toast.LENGTH_LONG) {
         baseActivity?.showToast(text, length)
     }
+
+    fun navigateToScreen(screen: Int) {
+        baseActivity?.navigateToScreen(screen)
+    }
 }

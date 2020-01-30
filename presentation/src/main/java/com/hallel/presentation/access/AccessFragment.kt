@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.hallel.domain.user.UserFormErrors.*
 import com.hallel.domain.utils.DATE_MASK
 import com.hallel.domain.utils.PHONE_MASK
@@ -61,21 +59,21 @@ class AccessFragment: Fragment() {
         viewModel.showFormErrors().observe(this) { errorList ->
             errorList.forEach {
                 when (it) {
-                    INVALID_BIRTHDAY -> accessTxtInputLayoutBirthday.error = getString(R.string.invalid_birthday)
-                    INVALID_PHONE -> accessTxtInputLayoutPhone.error = getString(R.string.invalid_phone)
-                    INVALID_NAME -> accessTxtInputLayoutName.error = getString(R.string.invalid_name)
-                    INVALID_EMAIL -> accessTxtInputLayoutEmail.error = getString(R.string.invalid_email)
-                    PRIVACY_POLICE_NOT_CHECKED -> showToast(getString(R.string.unchecked_privacy_policy_text))
+                    INVALID_BIRTHDAY -> accessTxtInputLayoutBirthday.error = getString(R.string.access_txt_invalid_birthday)
+                    INVALID_PHONE -> accessTxtInputLayoutPhone.error = getString(R.string.access_txt_invalid_phone)
+                    INVALID_NAME -> accessTxtInputLayoutName.error = getString(R.string.access_txt_invalid_name)
+                    INVALID_EMAIL -> accessTxtInputLayoutEmail.error = getString(R.string.access_txt_invalid_email)
+                    PRIVACY_POLICE_NOT_CHECKED -> showToast(getString(R.string.access_txt_unchecked_privacy_policy_text))
                 }
             }
         }
 
         viewModel.showInvalidEmailMessage().observe(this) {
-            accessTxtInputLayoutEmail.error = getString(R.string.invalid_email)
+            accessTxtInputLayoutEmail.error = getString(R.string.access_txt_invalid_email)
         }
 
         viewModel.showErrorOnRegisterNewUser().observe(this) {
-            showToast(getString(R.string.fail_on_register_new_user))
+            showToast(getString(R.string.access_txt_fail_on_register_new_user))
         }
 
         viewModel.registerNewUserAfterValidateFormFields().observe(this) {
@@ -97,8 +95,8 @@ class AccessFragment: Fragment() {
     }
 
     private fun enableFormViews() {
-        showToast(getString(R.string.user_not_registered))
-        accessTxtTitle.text = getString(R.string.register_title)
+        showToast(getString(R.string.access_txt_user_not_registered))
+        accessTxtTitle.text = getString(R.string.access_btn_register)
         visibleViews(
             accessTxtInputLayoutName,
             accessTxtInputLayoutPhone,
