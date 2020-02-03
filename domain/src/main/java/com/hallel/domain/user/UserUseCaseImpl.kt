@@ -3,14 +3,13 @@ package com.hallel.domain.user
 import com.hallel.data.user.User
 import com.hallel.data.user.UserDao
 import com.hallel.domain.extension.clearText
-import com.hallel.domain.utils.DATA_CLEAR_REGEX
-import com.hallel.domain.utils.EMAIL_REGEX
-import com.hallel.domain.utils.PHONE_CLEAR_REGEX
+import com.hallel.domain.utils.*
+import java.lang.Exception
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class UserUseCaseImpl(private val userDao: UserDao): UserUseCase {
+class UserUseCaseImpl(private val userDao: UserDao) : UserUseCase {
 
     override fun isUserValid(): Boolean {
         return userDao.getUser() != null
@@ -25,7 +24,7 @@ class UserUseCaseImpl(private val userDao: UserDao): UserUseCase {
         email: String,
         phone: String,
         birthday: String
-    ): Boolean {
+    ): ResultWrapper<Boolean> {
         val newUser = User(
             userId = 1,
             userName = name,
@@ -34,11 +33,21 @@ class UserUseCaseImpl(private val userDao: UserDao): UserUseCase {
             userPhone = phone,
             isSent = 0
         )
-        return userDao.updateUser(newUser) > 0
+        return try {
+            ResultWrapper.Success(userDao.updateUser(newUser) > 0)
+        } catch (exception: Exception) {
+            ResultWrapper.Error(error = exception)
+        }
     }
 
     override fun isValidBirthday(birthday: String): Boolean {
-        return birthday.clearText(DATA_CLEAR_REGEX).length == 8 && isBirthdayRangeValid(birthday)
+        val clearDate = birthday.clearText(DATA_CLEAR_REGEX)
+        val validRange = isBirthdayRangeValid(
+            date = birthday,
+            allowedMinUserDate = getRangeDate(-18),
+            allowedMaxUserDate = getRangeDate(-100)
+        )
+        return clearDate.length == 8 && validRange
     }
 
     override fun isValidPhone(phone: String): Boolean {
@@ -55,20 +64,23 @@ class UserUseCaseImpl(private val userDao: UserDao): UserUseCase {
 
     internal fun isBirthdayRangeValid(
         date: String,
-        datePattern: String = "dd/MM/yyyy",
+        datePattern: String = DATE_PATTERN_LITTLE_ENDIAN,
         pattern: SimpleDateFormat = SimpleDateFormat(datePattern, Locale("pt", "BR")),
-        calendar: Calendar = Calendar.getInstance()
+        allowedMinUserDate: Calendar,
+        allowedMaxUserDate: Calendar
     ): Boolean {
         return try {
-            val allowedMinUserDate = calendar.apply { add(Calendar.YEAR, -18) }
-            val allowedMaxUserDate = calendar.apply { add(Calendar.YEAR, -100) }
             pattern.isLenient = false
-            val dateFormat = pattern.parse(date)
-            dateFormat?.let {
-                it.before(allowedMinUserDate.time) && it.after(allowedMaxUserDate.time)
+            pattern.parse(date)?.let {
+                val before = it.before(allowedMinUserDate.time)
+                val after = it.after(allowedMaxUserDate.time)
+                before && after
             } ?: false
         } catch (e: ParseException) {
             false
         }
     }
+
+    internal fun getRangeDate(range: Int, calendar: Calendar = Calendar.getInstance()) =
+        calendar.apply { add(Calendar.YEAR, range) }
 }

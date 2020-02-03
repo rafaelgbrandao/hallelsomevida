@@ -8,6 +8,9 @@ import java.lang.Exception
 
 open class BaseViewModel: ViewModel() {
 
+    fun showRequestError(): LiveData<Exception> = lvRequestError
+    private val lvRequestError = MutableLiveData<Exception>()
+
     fun handleErrors(exception: Exception?) {
         Log.v("Teste", "Error - ${exception?.message}")
         /*when (exception) {

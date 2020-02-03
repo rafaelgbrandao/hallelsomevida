@@ -2,10 +2,10 @@ package com.hallel.presentation.splash
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hallel.domain.update.UpdateUseCase
 import com.hallel.domain.user.UserUseCase
+import com.hallel.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class SplashViewModel(
     private val updateUseCase: UpdateUseCase,
     private val userUseCase: UserUseCase
-): ViewModel() {
+): BaseViewModel() {
 
     fun showAppUpdateDialog(): LiveData<Unit> = lvLastVersionNumber
     private val lvLastVersionNumber = MutableLiveData<Unit>()

@@ -2,14 +2,15 @@ package com.hallel.presentation.access
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hallel.domain.user.UserFormErrors
 import com.hallel.domain.user.UserUseCase
+import com.hallel.domain.utils.ResultWrapper.*
+import com.hallel.presentation.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
+class AccessViewModel(private val userUseCase: UserUseCase): BaseViewModel() {
 
     fun userNotRegistered(): LiveData<Unit> = lvUserNotRegistered
     private val lvUserNotRegistered = MutableLiveData<Unit>()
@@ -64,10 +65,14 @@ class AccessViewModel(private val userUseCase: UserUseCase): ViewModel() {
 
     fun registerNewUser(name: String, email: String, phone: String, birthday: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            when {
-                userUseCase.registerNewUser(name, email, phone, birthday) ->
-                    lvNavigateToNextScreen.postValue(Unit)
-                 else -> lvErrorOnRegisterNewUser.postValue(Unit)
+            when (val result = userUseCase.registerNewUser(name, email, phone, birthday)) {
+                is Success -> {
+                    when {
+                        result.value -> lvNavigateToNextScreen.postValue(Unit)
+                        else -> lvErrorOnRegisterNewUser.postValue(Unit)
+                    }
+                }
+                is Error -> handleErrors(result.error)
             }
         }
     }
