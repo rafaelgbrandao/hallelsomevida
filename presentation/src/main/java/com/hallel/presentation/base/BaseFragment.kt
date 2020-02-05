@@ -2,6 +2,8 @@ package com.hallel.presentation.base
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.hallel.presentation.extensions.safeNavigate
 
 open class BaseFragment: Fragment() {
 
@@ -35,6 +37,6 @@ open class BaseFragment: Fragment() {
     }
 
     fun navigateToScreen(screen: Int) {
-        baseActivity?.navigateToScreen(screen)
+        findNavController().safeNavigate(screen)
     }
 }
