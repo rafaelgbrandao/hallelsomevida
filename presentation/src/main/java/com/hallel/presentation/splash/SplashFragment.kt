@@ -51,24 +51,25 @@ class SplashFragment: BaseFragment() {
             searchForUpdates()
         }
 
-        viewModel.noUpdateFound().observe(this) {
+        viewModel.contentUpdateVerificationFinished().observe(this) {
             validateUser()
         }
 
-        viewModel.hasContentForUpdate().observe(this) { showProgress ->
-            when {
-                showProgress -> {
-                    splashProgressBarContentSearch.gone()
-                    splashProgressBarContentUpdate.visible()
-                    splashTextViewUpdateProgress.text = getString(R.string.progress_update_text)
-                }
-                else -> validateUser()
-            }
+        viewModel.contentUpdateVerificationStarted().observe(this) {
+            splashProgressBarContentSearch.gone()
+            splashProgressBarContentUpdate.visible()
+            splashTextViewUpdateProgress.text = getString(R.string.progress_update_text)
+        }
+
+        viewModel.contentUpdateVerificationFinished().observe(this) {
+            validateUser()
         }
 
         viewModel.updateContentProgressBar().observe(this) { (currentProgress, maxValue) ->
-            splashProgressBarContentUpdate.max = maxValue
-            splashProgressBarContentUpdate.progress = currentProgress
+            splashProgressBarContentUpdate.apply {
+                max = maxValue
+                progress = currentProgress
+            }
         }
 
         viewModel.navigateToNextScreen().observe(this) { hasUser ->

@@ -45,7 +45,10 @@ dependencies {
     implementation generalDeps.coroutines_adapter
     implementation generalDeps.inputmask
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation testDeps.rules
+    testImplementation testDeps.junitx
+    testImplementation testDeps.core_testing
+    testImplementation testDeps.coroutine_test
+    testImplementation testDeps.mockk
+    testImplementation testDeps.mockk_instrumented
 }

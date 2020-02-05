@@ -1,6 +1,6 @@
 package com.hallel.domain.update
 
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +14,7 @@ class UpdateUseCaseImpl: UpdateUseCase {
         return 0
     }
 
-    override fun onSearchForContentUpdates(): Flow<Pair<Int, Int>> {
+    override fun onSearchForContentUpdates(dispatcher: CoroutineDispatcher): Flow<Pair<Int, Int>> {
         return flow {
             var count = 0
             val total = 10
@@ -23,6 +23,6 @@ class UpdateUseCaseImpl: UpdateUseCase {
                 count += 2
                 emit(Pair(count, total))
             }
-        }.flowOn(Dispatchers.IO)
+        }.flowOn(dispatcher)
     }
 }
