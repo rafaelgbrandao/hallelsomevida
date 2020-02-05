@@ -8,4 +8,40 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--  Access Form -->
+    <style name="AccessTitle" parent="">
+        <item name="android:textSize">@dimen/font24</item>
+        <item name="android:textColor">@color/blue_san_juan</item>
+    </style>
+
+    <style name="AccessTextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="android:textColor">@color/black_transparence_11</item>
+        <item name="android:textColorHint">@color/black_transparence_66</item>
+        <item name="android:layout_margin">@dimen/spacing8</item>
+    </style>
+
+    <style name="AccessCardView" parent="CardView">
+        <item name="cardBackgroundColor">@color/black_transparence_11</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="android:layout_margin">@dimen/spacing12</item>
+    </style>
+
+    <style name="AccessScrollview" parent="">
+        <item name="android:fillViewport">true</item>
+        <item name="android:animateLayoutChanges">true</item>
+    </style>
+
+    <style name="AccessSubtitle" parent="">
+        <item name="android:layout_margin">@dimen/spacing8</item>
+        <item name="android:text">"@string/access_txt_access_subtitle"</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AccessSendButton" parent="">
+        <item name="android:layout_marginBottom">@dimen/spacing8</item>
+        <item name="android:layout_marginTop">@dimen/spacing16</item>
+        <item name="android:background">@null</item>
+
+    </style>
 </resources>

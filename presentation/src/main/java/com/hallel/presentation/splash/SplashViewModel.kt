@@ -7,6 +7,7 @@ import com.hallel.domain.update.UpdateUseCase
 import com.hallel.domain.user.UserUseCase
 import com.hallel.presentation.base.BaseViewModel
 import com.hallel.presentation.utils.CustomDispatchers
+import com.hallel.presentation.utils.Event
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -32,8 +33,8 @@ class SplashViewModel(
     fun contentUpdateVerificationStarted(): LiveData<Unit> = lvStartContentUpdateVerification
     private val lvStartContentUpdateVerification = MutableLiveData<Unit>()
 
-    fun navigateToNextScreen(): LiveData<Boolean> = lvNavigateToNextScreen
-    private val lvNavigateToNextScreen = MutableLiveData<Boolean>()
+    fun navigateToNextScreen(): LiveData<Event<Boolean>> = lvNavigateToNextScreen
+    private val lvNavigateToNextScreen = MutableLiveData<Event<Boolean>>()
 
     @FlowPreview
     fun onSearchForUpdate() {
@@ -58,7 +59,7 @@ class SplashViewModel(
 
     fun onValidateUser() {
         viewModelScope.launch(dispatchers.io) {
-            lvNavigateToNextScreen.postValue(userUseCase.isUserValid())
+            lvNavigateToNextScreen.postValue(Event(userUseCase.isUserValid()))
         }
     }
 }

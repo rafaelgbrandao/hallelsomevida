@@ -12,6 +12,8 @@ open class BaseFragment: Fragment() {
 
     fun setActionBarVisible(isVisible: Boolean) = baseActivity?.setActionBarVisible(isVisible)
 
+    fun setActionBarTitle(title: String) = baseActivity?.setActionBarTitle(title)
+
     fun showAlertDialog(
         title: String?,
         message: String?,

@@ -10,11 +10,12 @@ import com.hallel.domain.user.UserFormErrors.*
 import com.hallel.domain.utils.DATE_MASK
 import com.hallel.domain.utils.PHONE_MASK
 import com.hallel.presentation.R
+import com.hallel.presentation.base.BaseFragment
 import com.hallel.presentation.extensions.*
 import kotlinx.android.synthetic.main.fragment_access.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AccessFragment: Fragment() {
+class AccessFragment: BaseFragment() {
 
     private val viewModel by viewModel<AccessViewModel>()
 
@@ -28,6 +29,8 @@ class AccessFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setActionBarVisible(true)
+        setActionBarTitle(getString(R.string.access_txt_access_title))
         initFields()
         initObservers()
         setSendButtonListener {
@@ -95,8 +98,9 @@ class AccessFragment: Fragment() {
     }
 
     private fun enableFormViews() {
-        showToast(getString(R.string.access_txt_user_not_registered))
-        accessTxtTitle.text = getString(R.string.access_btn_register)
+        setActionBarTitle(getString(R.string.access_txt_register_title))
+        accessTxtSubtitle.text = getString(R.string.access_txt_user_not_registered)
+        accessBtnSend.text = getString(R.string.access_btn_register)
         visibleViews(
             accessTxtInputLayoutName,
             accessTxtInputLayoutPhone,

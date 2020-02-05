@@ -24,10 +24,11 @@
     <string name="access_txt_invalid_phone">Telefone inválido</string>
     <string name="access_txt_invalid_name">Nome inválido</string>
     <string name="access_txt_invalid_email">Email inválido</string>
-    <string name="access_txt_login_title">Acessar</string>
+    <string name="access_txt_access_title">Acessar</string>
     <string name="access_txt_privacy_policy_text">Politica de privacidade</string>
-    <string name="access_txt_register_title">Registrar</string>
-    <string name="access_txt_unchecked_privacy_policy_text">Para prosseguir é necessário aceitar a politica de privacidade</string>
-    <string name="access_txt_user_not_registered">Não encontramos seu cadastro. Registre para poder acessar o app</string>
+    <string name="access_txt_register_title">Cadastrar</string>
+    <string name="access_txt_unchecked_privacy_policy_text">Para realizar o cadastro, é necessário aceitar a politica de privacidade</string>
+    <string name="access_txt_user_not_registered">Ops! Não encontramos seu cadastro.\nRegistre para poder acessar o app</string>
+    <string name="access_txt_access_subtitle">Informe seu email para poder acessar</string>
 
 </resources>

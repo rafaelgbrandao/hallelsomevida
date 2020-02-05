@@ -15,6 +15,10 @@ open class BaseActivity: AppCompatActivity() {
         }
     }
 
+    fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
     fun showAlertDialog(
         title: String?,
         message: String?,

@@ -8,10 +8,7 @@ import android.view.ViewGroup
 import com.hallel.presentation.BuildConfig
 import com.hallel.presentation.R
 import com.hallel.presentation.base.BaseFragment
-import com.hallel.presentation.extensions.gone
-import com.hallel.presentation.extensions.goneViews
-import com.hallel.presentation.extensions.observe
-import com.hallel.presentation.extensions.visible
+import com.hallel.presentation.extensions.*
 import kotlinx.android.synthetic.main.fragment_splash.*
 import org.koin.android.ext.android.inject
 
