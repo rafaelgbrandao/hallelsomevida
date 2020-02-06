@@ -64,7 +64,10 @@ class SplashViewModelTest : BaseTest() {
 
             viewModel.onValidateUser()
 
-            assertEquals(true, viewModel.navigateToNextScreen().value)
+            assertEquals(
+                true,
+                viewModel.navigateToNextScreen().value?.getContentIfNotHandled()
+            )
         }
     }
 
