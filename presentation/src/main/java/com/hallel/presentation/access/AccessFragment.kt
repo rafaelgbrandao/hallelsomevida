@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.hallel.domain.user.UserFormErrors.*
 import com.hallel.domain.utils.DATE_MASK
 import com.hallel.domain.utils.PHONE_MASK
@@ -80,7 +79,7 @@ class AccessFragment: BaseFragment() {
         }
 
         viewModel.registerNewUserAfterValidateFormFields().observe(this) {
-            viewModel.registerNewUser(
+            viewModel.onRegisterNewUser(
                 name = accessTxtInputEditTextName.getInputText(),
                 email = accessTxtInputEditTextEmail.getInputText(),
                 phone = accessTxtInputEditTextPhone.getInputText(),

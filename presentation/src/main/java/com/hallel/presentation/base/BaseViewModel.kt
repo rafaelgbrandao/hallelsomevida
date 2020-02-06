@@ -12,10 +12,10 @@ open class BaseViewModel: ViewModel() {
     private val lvRequestError = MutableLiveData<Exception>()
 
     fun handleErrors(exception: Exception?) {
-        Log.v("Teste", "Error - ${exception?.message}")
+        lvRequestError.postValue(exception)
         /*when (exception) {
             is RuntimeException -> RuntimeException
-            is Exception
+            is Exception ->
             else -> GenericError
         }*/
     }

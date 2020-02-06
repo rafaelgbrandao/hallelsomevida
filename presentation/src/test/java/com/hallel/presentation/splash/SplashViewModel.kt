@@ -22,11 +22,6 @@ class SplashViewModelTest : BaseTest() {
     @MockK
     private lateinit var updateUserCase: UpdateUseCase
 
-    private val dispatchers = CustomDispatchers(
-        io = testDispatcher,
-        main = testDispatcher
-    )
-
     private val viewModel by lazy {
         SplashViewModel(
             userUseCase = userUseCase,

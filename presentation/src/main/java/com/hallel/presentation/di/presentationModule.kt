@@ -14,5 +14,5 @@ val presentationModule = module {
 
     viewModel { SplashViewModel(get(), get(), get(named(PDISPATCHER))) }
 
-    viewModel { AccessViewModel(get()) }
+    viewModel { AccessViewModel(get(), get(named(PDISPATCHER))) }
 }

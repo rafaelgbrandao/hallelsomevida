@@ -7,10 +7,14 @@ import com.hallel.domain.user.UserFormErrors
 import com.hallel.domain.user.UserUseCase
 import com.hallel.domain.utils.ResultWrapper.*
 import com.hallel.presentation.base.BaseViewModel
+import com.hallel.presentation.utils.CustomDispatchers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AccessViewModel(private val userUseCase: UserUseCase): BaseViewModel() {
+class AccessViewModel(
+    private val userUseCase: UserUseCase,
+    private val dispatchers: CustomDispatchers
+): BaseViewModel() {
 
     fun userNotRegistered(): LiveData<Unit> = lvUserNotRegistered
     private val lvUserNotRegistered = MutableLiveData<Unit>()
@@ -31,7 +35,7 @@ class AccessViewModel(private val userUseCase: UserUseCase): BaseViewModel() {
     private val lvNavigateToNextScreen = MutableLiveData<Unit>()
 
     fun onVerifyIfUserExist(userEmail: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatchers.io) {
             if (userUseCase.isValidEmail(userEmail)) {
                 when {
                     userUseCase.userAlreadyRegistered(userEmail) -> lvNavigateToNextScreen.postValue(Unit)
@@ -63,8 +67,8 @@ class AccessViewModel(private val userUseCase: UserUseCase): BaseViewModel() {
         }
     }
 
-    fun registerNewUser(name: String, email: String, phone: String, birthday: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+    fun onRegisterNewUser(name: String, email: String, phone: String, birthday: String) {
+        viewModelScope.launch(dispatchers.io) {
             when (val result = userUseCase.registerNewUser(name, email, phone, birthday)) {
                 is Success -> {
                     when {
