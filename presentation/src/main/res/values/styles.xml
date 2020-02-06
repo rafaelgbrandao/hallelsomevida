@@ -34,7 +34,7 @@
 
     <style name="AccessSubtitle" parent="">
         <item name="android:layout_margin">@dimen/spacing8</item>
-        <item name="android:text">"@string/access_txt_access_subtitle"</item>
+        <item name="android:text">@string/access_txt_access_subtitle</item>
         <item name="android:gravity">center</item>
     </style>
 

@@ -34,6 +34,9 @@ class AccessViewModel(
     fun navigateToNextScreen(): LiveData<Unit> = lvNavigateToNextScreen
     private val lvNavigateToNextScreen = MutableLiveData<Unit>()
 
+    fun navigateToPrivacyPolice(): LiveData<String> = lvPrivacyPolice
+    private val lvPrivacyPolice = MutableLiveData<String>()
+
     fun onVerifyIfUserExist(userEmail: String) {
         viewModelScope.launch(dispatchers.io) {
             if (userUseCase.isValidEmail(userEmail)) {
@@ -79,5 +82,9 @@ class AccessViewModel(
                 is Error -> handleErrors(result.error)
             }
         }
+    }
+
+    fun onRequestPrivacyPolice() {
+        lvPrivacyPolice.postValue(userUseCase.getPrivacyPoliceLink())
     }
 }

@@ -62,6 +62,10 @@ class UserUseCaseImpl(private val userDao: UserDao) : UserUseCase {
         return name.isNotEmpty() && name.length >= 2
     }
 
+    override fun getPrivacyPoliceLink(): String {
+        return "https://www.google.com.br/"
+    }
+
     internal fun isBirthdayRangeValid(
         date: String,
         datePattern: String = DATE_PATTERN_LITTLE_ENDIAN,

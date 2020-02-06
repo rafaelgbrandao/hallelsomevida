@@ -17,4 +17,6 @@ interface UserUseCase {
     fun isValidEmail(email: String): Boolean
 
     fun isValidName(name: String): Boolean
+
+    fun getPrivacyPoliceLink(): String
 }

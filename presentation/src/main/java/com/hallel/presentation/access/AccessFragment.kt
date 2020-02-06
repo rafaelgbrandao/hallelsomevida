@@ -42,6 +42,7 @@ class AccessFragment: BaseFragment() {
         accessTxtInputEditTextBirthday.applySingleMask(DATE_MASK) { accessTxtInputLayoutBirthday.error = "" }
         accessTxtInputEditTextName.setTextChangeListener(onChange = { accessTxtInputLayoutName.error = "" })
         accessTxtInputEditTextEmail.setTextChangeListener(onChange = { accessTxtInputLayoutEmail.error = "" })
+        accessTextViewAcceptPrivacyPolicy.setOnClickListener { viewModel.onRequestPrivacyPolice() }
     }
 
     private fun initObservers() {
@@ -90,6 +91,10 @@ class AccessFragment: BaseFragment() {
         viewModel.navigateToNextScreen().observe(this) {
             showToast("Will Navigate")
         }
+
+        viewModel.navigateToPrivacyPolice().observe(this) {
+            redirectDeepLink(it)
+        }
     }
 
     private fun setSendButtonListener(listener: () -> Unit) {
@@ -104,7 +109,8 @@ class AccessFragment: BaseFragment() {
             accessTxtInputLayoutName,
             accessTxtInputLayoutPhone,
             accessTxtInputLayoutBirthday,
-            accessCheckBoxAcceptPrivacyPolicy
+            accessCheckBoxAcceptPrivacyPolicy,
+            accessTextViewAcceptPrivacyPolicy
         )
     }
     private fun showToast(text: String) {

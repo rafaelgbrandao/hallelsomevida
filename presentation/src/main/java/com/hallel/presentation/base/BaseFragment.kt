@@ -1,5 +1,7 @@
 package com.hallel.presentation.base
 
+import android.content.Intent
+import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -40,5 +42,10 @@ open class BaseFragment: Fragment() {
 
     fun navigateToScreen(screen: Int) {
         findNavController().safeNavigate(screen)
+    }
+
+    fun redirectDeepLink(link: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+        startActivity(intent)
     }
 }
