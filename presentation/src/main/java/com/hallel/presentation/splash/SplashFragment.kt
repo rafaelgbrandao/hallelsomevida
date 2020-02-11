@@ -65,14 +65,14 @@ class SplashFragment: BaseFragment() {
             }
         }
 
-        viewModel.navigateToNextScreen().observe(this) { hasUser ->
-            Log.v("Teste", "$hasUser")
-            /*val nextScreen = when {
-                hasUser -> SplashFragment::class.java
-                else -> SplashFragment::class.java
-            }
-            startActivity(Intent(context, nextScreen))*/
-            navigateToScreen(R.id.action_splashFragment_to_accessFragment)
+        viewModel.navigateToNextScreen().observe(this) { eventUser ->
+            val hasUser = eventUser.getContentIfNotHandled() ?: false
+            navigateToScreen(
+                when {
+                    hasUser -> R.id.action_splashFragment_to_homeFragment
+                    else -> R.id.action_splashFragment_to_accessFragment
+                }
+            )
         }
     }
 

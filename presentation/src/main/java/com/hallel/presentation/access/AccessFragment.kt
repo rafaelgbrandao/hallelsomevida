@@ -89,7 +89,7 @@ class AccessFragment: BaseFragment() {
         }
 
         viewModel.navigateToNextScreen().observe(this) {
-            showToast("Will Navigate")
+            navigateToScreen(R.id.action_accessFragment_to_homeFragment)
         }
 
         viewModel.navigateToPrivacyPolice().observe(this) {

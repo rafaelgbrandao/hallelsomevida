@@ -1,6 +1,7 @@
 package com.hallel.presentation.di
 
 import com.hallel.presentation.access.AccessViewModel
+import com.hallel.presentation.home.HomeViewModel
 import com.hallel.presentation.splash.SplashViewModel
 import com.hallel.presentation.utils.CustomDispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,4 +16,6 @@ val presentationModule = module {
     viewModel { SplashViewModel(get(), get(), get(named(PDISPATCHER))) }
 
     viewModel { AccessViewModel(get(), get(named(PDISPATCHER))) }
+
+    viewModel { HomeViewModel() }
 }
