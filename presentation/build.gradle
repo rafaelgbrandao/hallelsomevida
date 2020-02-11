@@ -44,6 +44,8 @@ dependencies {
     implementation generalDeps.coroutines
     implementation generalDeps.coroutines_adapter
     implementation generalDeps.inputmask
+    implementation generalDeps.glide
+    annotationProcessor generalDeps.glide_compiler
 
     androidTestImplementation testDeps.rules
     testImplementation testDeps.junitx

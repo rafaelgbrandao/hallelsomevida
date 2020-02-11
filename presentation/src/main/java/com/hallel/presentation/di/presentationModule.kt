@@ -17,5 +17,5 @@ val presentationModule = module {
 
     viewModel { AccessViewModel(get(), get(named(PDISPATCHER))) }
 
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get(), get(named(PDISPATCHER))) }
 }
