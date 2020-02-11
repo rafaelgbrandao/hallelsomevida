@@ -58,10 +58,6 @@ class SplashFragment: BaseFragment() {
             splashTextViewUpdateProgress.text = getString(R.string.progress_update_text)
         }
 
-        viewModel.contentUpdateVerificationFinished().observe(this) {
-            validateUser()
-        }
-
         viewModel.updateContentProgressBar().observe(this) { (currentProgress, maxValue) ->
             splashProgressBarContentUpdate.apply {
                 max = maxValue

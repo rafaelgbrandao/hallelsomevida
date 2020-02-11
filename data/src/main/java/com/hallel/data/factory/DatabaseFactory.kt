@@ -22,15 +22,8 @@ class DatabaseFactory(private val context: Context) :
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {}
 
     fun createDatabase() {
-        when {
-            isDatabaseAlreadyCreated() -> {
-                Log.v("Teste", "Already copied")
-                openDatabase(databasePath)
-            }
-            else -> {
-                Log.v("Teste", "Will copy")
-                copyDatabase()
-            }
+        if (!isDatabaseAlreadyCreated()) {
+            copyDatabase()
         }
     }
 
