@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hallel.domain.guest.GuestVO
 import com.hallel.presentation.R
+import com.hallel.presentation.extensions.visible
+import com.hallel.presentation.extensions.visibleViews
 import kotlinx.android.synthetic.main.item_guest.view.*
 
 class HomeGuestAdapter(
@@ -35,13 +39,22 @@ class HomeGuestAdapter(
 
     override fun onBindViewHolder(holder: CustomHolder, position: Int) {
         val guest = guestList[position]
-        Glide.with(context)
-            .load(guest.image)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.hallel_logo)
-            .optionalFitCenter()
-            .into(holder.guestPhoto)
-        holder.guestName.text = guest.name
+        when {
+            guest.image.isNullOrEmpty() -> holder.guestFallbackName.apply {
+                text = guest.name
+                visible()
+            }
+            else -> {
+                Glide.with(context)
+                        .load(guest.image)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.hallel_logo)
+                        .optionalFitCenter()
+                        .into(holder.guestPhoto)
+                holder.guestContainer.visible()
+                holder.guestName.text = guest.name
+            }
+        }
         holder.bind(guest, listener)
     }
 
@@ -49,6 +62,8 @@ class HomeGuestAdapter(
 
         val guestPhoto: ImageView = view.itemGuestImgPhoto
         val guestName: TextView = view.itemGuestTxtName
+        val guestContainer: ConstraintLayout = view.itemGuestContainerGuest
+        val guestFallbackName: TextView = view.itemGuestTxtNameFallback
 
         fun bind(guest: GuestVO, listener: HomeGeneralClickListener) {
             itemView.setOnClickListener {
