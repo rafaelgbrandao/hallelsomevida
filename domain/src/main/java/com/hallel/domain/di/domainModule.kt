@@ -2,6 +2,8 @@ package com.hallel.domain.di
 
 import com.hallel.domain.event.EventContentUseCase
 import com.hallel.domain.event.EventContentUseCaseImpl
+import com.hallel.domain.guest.GuestUseCase
+import com.hallel.domain.guest.GuestUseCaseImpl
 import com.hallel.domain.update.UpdateUseCase
 import com.hallel.domain.update.UpdateUseCaseImpl
 import com.hallel.domain.user.UserUseCase
@@ -17,4 +19,6 @@ val domainModule = module {
     single<UserUseCase> { UserUseCaseImpl(get()) }
 
     single<EventContentUseCase> { EventContentUseCaseImpl(get()) }
+
+    single<GuestUseCase> { GuestUseCaseImpl(get()) }
 }

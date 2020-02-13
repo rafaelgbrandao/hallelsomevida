@@ -6,12 +6,16 @@ import com.hallel.data.event.Event
 import com.hallel.data.event.EventDao
 import com.hallel.data.eventContent.EventContent
 import com.hallel.data.eventContent.EventContentDao
+import com.hallel.data.guest.Guest
+import com.hallel.data.guest.GuestDao
+import com.hallel.data.guest.EventGuest
 import com.hallel.data.user.User
 import com.hallel.data.user.UserDao
 
 @Suppress("SpellCheckingInspection")
 @Database(
-    entities = [User::class, Event::class, EventContent::class],//, Partner::class, Participant::class, Menu::class],
+    entities = [User::class, Event::class, EventContent::class, Guest::class,
+        EventGuest::class],//, Partner::class, Menu::class],
     version = 3
 )
 
@@ -22,6 +26,8 @@ abstract class HallelDatabase : RoomDatabase() {
     abstract fun eventDao(): EventDao
 
     abstract fun eventContentDao(): EventContentDao
+
+    abstract fun guestDao(): GuestDao
 
     /*abstract fun partnerDao(): PartnerDao
 

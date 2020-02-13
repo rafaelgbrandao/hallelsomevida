@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/homeImageViewBanner"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageView
+        android:id="@+id/homeImgLogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/homeRVParticipants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hallel_splash" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/homeTextViewTitle"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/homeTxtTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/homeImgLogo"
+        tools:text="@string/app_name" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/homeTextViewSubtitle"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/homeTxtSubtitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeTextViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/homeTxtTitle"
+        tools:text="Subtitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRVParticipants"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#AAA"
+        android:maxHeight="110dp"
+        tools:listitem="@layout/item_guest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

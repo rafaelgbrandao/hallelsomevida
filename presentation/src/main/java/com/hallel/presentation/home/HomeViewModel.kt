@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hallel.domain.event.EventContentUseCase
 import com.hallel.domain.event.EventVO
+import com.hallel.domain.guest.GuestUseCase
+import com.hallel.domain.guest.GuestVO
 import com.hallel.presentation.base.BaseViewModel
 import com.hallel.presentation.utils.CustomDispatchers
 import kotlinx.coroutines.flow.collect
@@ -12,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val eventContentUseCase: EventContentUseCase,
+    private val guestUseCase: GuestUseCase,
     private val dispatchers: CustomDispatchers
 ): BaseViewModel() {
 
@@ -21,12 +24,29 @@ class HomeViewModel(
     fun noContentAvailable(): LiveData<Unit> = lvNoEventContentFound
     private val lvNoEventContentFound = MutableLiveData<Unit>()
 
+    fun hasGuestAvailableForEvent(): LiveData<List<GuestVO>> = lvHasGuestAvailableForEvent
+    private val lvHasGuestAvailableForEvent = MutableLiveData<List<GuestVO>>()
+
+    fun noGuestAvailableForEvent(): LiveData<Unit> = lvNoGuestAvailableForEvent
+    private val lvNoGuestAvailableForEvent = MutableLiveData<Unit>()
+
     fun onLoadEventContent() {
         viewModelScope.launch(dispatchers.io) {
             eventContentUseCase.getEventContent(dispatchers.io).collect { event ->
                 event?.let {
                     lvLoadEventContent.postValue(it)
                 } ?: lvNoEventContentFound.postValue(Unit)
+            }
+        }
+    }
+
+    fun onLoadEventGuests(eventId: Int) {
+        viewModelScope.launch(dispatchers.io) {
+            guestUseCase.getGuestsFromEvent(dispatchers.io, eventId).collect { guestList ->
+                when {
+                    guestList.isEmpty() -> lvNoGuestAvailableForEvent.postValue(Unit)
+                    else -> lvHasGuestAvailableForEvent.postValue(guestList)
+                }
             }
         }
     }

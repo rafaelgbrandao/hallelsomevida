@@ -19,4 +19,6 @@ val dataModule = module {
 
     single { get<HallelDatabase>().eventContentDao() }
 
+    single { get<HallelDatabase>().guestDao() }
+
 }
