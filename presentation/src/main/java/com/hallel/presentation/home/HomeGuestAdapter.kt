@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.hallel.domain.guest.GuestVO
@@ -40,9 +38,11 @@ class HomeGuestAdapter(
     override fun onBindViewHolder(holder: CustomHolder, position: Int) {
         val guest = guestList[position]
         when {
-            guest.image.isNullOrEmpty() -> holder.guestFallbackName.apply {
-                text = guest.name
-                visible()
+            guest.image.isNullOrEmpty() -> {
+                holder.guestFallbackName.apply {
+                    text = guest.name
+                    visible()
+                }
             }
             else -> {
                 Glide.with(context)
@@ -51,8 +51,8 @@ class HomeGuestAdapter(
                         .error(R.drawable.hallel_logo)
                         .optionalFitCenter()
                         .into(holder.guestPhoto)
-                holder.guestContainer.visible()
                 holder.guestName.text = guest.name
+                visibleViews(holder.guestName, holder.guestPhoto)
             }
         }
         holder.bind(guest, listener)
@@ -62,7 +62,6 @@ class HomeGuestAdapter(
 
         val guestPhoto: ImageView = view.itemGuestImgPhoto
         val guestName: TextView = view.itemGuestTxtName
-        val guestContainer: ConstraintLayout = view.itemGuestContainerGuest
         val guestFallbackName: TextView = view.itemGuestTxtNameFallback
 
         fun bind(guest: GuestVO, listener: HomeGeneralClickListener) {
