@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface SponsorUseCase {
 
-    fun getSponsorsByEventId(eventId: Int, dispatcher: CoroutineDispatcher): Flow<List<SponsorVO>>
+    fun getSponsorsByEventId(eventId: Int, dispatcher: CoroutineDispatcher): Flow<List<SponsorVO>?>
 }

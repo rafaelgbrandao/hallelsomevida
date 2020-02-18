@@ -40,6 +40,8 @@ dependencies {
     implementation generalDeps.coroutines_adapter
 
     testImplementation testDeps.junitx
+    testImplementation testDeps.core_testing
+    testImplementation testDeps.coroutine_test
     testImplementation testDeps.mockk
     testImplementation testDeps.mockk_instrumented
 }

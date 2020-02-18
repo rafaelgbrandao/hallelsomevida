@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GuestUseCase {
 
-    fun getGuestsFromEvent(dispatcher: CoroutineDispatcher, eventId: Int): Flow<List<GuestVO>>
+    fun getGuestsFromEvent(eventId: Int, dispatcher: CoroutineDispatcher): Flow<List<GuestVO>?>
 }

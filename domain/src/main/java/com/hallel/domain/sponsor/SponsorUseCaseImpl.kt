@@ -9,15 +9,15 @@ import kotlinx.coroutines.flow.flowOn
 
 class SponsorUseCaseImpl(private val sponsorDao: SponsorDao): SponsorUseCase {
 
-    override fun getSponsorsByEventId(eventId: Int, dispatcher: CoroutineDispatcher): Flow<List<SponsorVO>> {
+    override fun getSponsorsByEventId(eventId: Int, dispatcher: CoroutineDispatcher): Flow<List<SponsorVO>?> {
         return flow {
             val sponsors = sponsorDao.getSponsorByEventId(eventId)
             emit(transformSponsorIntoSponsorVO(sponsors))
         }.flowOn(dispatcher)
     }
 
-    internal fun transformSponsorIntoSponsorVO(sponsor: List<Sponsor>): List<SponsorVO> {
-        return sponsor.map {
+    internal fun transformSponsorIntoSponsorVO(sponsor: List<Sponsor>?): List<SponsorVO>? {
+        return sponsor?.map {
             SponsorVO(
                 id = it.id,
                 name = it.name,

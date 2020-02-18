@@ -51,20 +51,20 @@ class HomeViewModel(
 
     fun onLoadEventGuests(eventId: Int) {
         viewModelScope.launch(dispatchers.io) {
-            guestUseCase.getGuestsFromEvent(dispatchers.io, eventId).collect { guestList ->
+            guestUseCase.getGuestsFromEvent(eventId, dispatchers.io).collect { guestList ->
                 when {
-                    guestList.isEmpty() -> lvNoGuestAvailableForEvent.postValue(Unit)
+                    guestList.isNullOrEmpty() -> lvNoGuestAvailableForEvent.postValue(Unit)
                     else -> lvHasGuestAvailableForEvent.postValue(guestList)
                 }
             }
         }
     }
 
-    fun onLoadSponsors(eventId: Int) {
+    fun onLoadEventSponsors(eventId: Int) {
         viewModelScope.launch(dispatchers.io) {
             sponsorUseCase.getSponsorsByEventId(eventId, dispatchers.io).collect{ sponsorsList ->
                 when {
-                    sponsorsList.isEmpty() -> lvNoSponsorAvailableForEvent.postValue(Unit)
+                    sponsorsList.isNullOrEmpty() -> lvNoSponsorAvailableForEvent.postValue(Unit)
                     else -> lvHasSponsorAvailableForEvent.postValue(sponsorsList)
                 }
             }

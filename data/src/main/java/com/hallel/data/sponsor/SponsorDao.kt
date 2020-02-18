@@ -7,7 +7,7 @@ import androidx.room.Query
 interface SponsorDao {
 
     @Query("$GET_SPONSORS_BY_ID :eventId")
-    fun getSponsorByEventId(eventId:Int): List<Sponsor>
+    fun getSponsorByEventId(eventId:Int): List<Sponsor>?
 
     companion object {
 

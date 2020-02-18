@@ -7,7 +7,7 @@ import androidx.room.Query
 interface GuestDao {
 
     @Query("$GET_GUESTS_FROM_EVENT :eventID")
-    fun getParticipantsFromEvent(eventID: Int): List<Guest>
+    fun getGuestsFromEvent(eventID: Int): List<Guest>?
 
     companion object {
         const val GET_GUESTS_FROM_EVENT = "Select p.* from ${Guest.TABLE_NAME} as p" +

@@ -47,7 +47,7 @@ class HomeFragment: BaseFragment() {
             eventVO.eventImage?.let { setBanner(it) }
             eventVO.id?.let {
                 viewModel.onLoadEventGuests(it)
-                viewModel.onLoadSponsors(it)
+                viewModel.onLoadEventSponsors(it)
             } ?: showToast("no Id")
         }
 
