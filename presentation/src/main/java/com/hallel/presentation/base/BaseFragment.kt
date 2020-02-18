@@ -5,6 +5,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.hallel.presentation.R
 import com.hallel.presentation.extensions.safeNavigate
 
 open class BaseFragment: Fragment() {
@@ -44,8 +45,11 @@ open class BaseFragment: Fragment() {
         findNavController().safeNavigate(screen)
     }
 
-    fun redirectDeepLink(link: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
-        startActivity(intent)
+    fun redirectDeepLink(link: String?) {
+        link?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
+            startActivity(intent)
+        } ?: showToast(getString(R.string.open_link_error))
+
     }
 }

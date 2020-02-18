@@ -12,7 +12,7 @@ data class Guest(
     @ColumnInfo(name = COLUMN_IMAGE) val image: String?
 ) {
     companion object {
-        const val TABLE_NAME = "participant"
+        const val TABLE_NAME = "guest"
         const val COLUMN_ID = "id"
         const val COLUMN_NAME = "name"
         const val COLUMN_TYPE = "type"

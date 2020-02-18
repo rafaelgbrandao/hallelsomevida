@@ -1,4 +1,4 @@
-package com.hallel.presentation.home
+package com.hallel.presentation.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.item_guest.view.*
 
 class HomeGuestAdapter(
     private val guestList: List<GuestVO>,
-    private val listener: HomeGeneralClickListener
+    private val listener: HomeGuestAdapterListener
 ) :
     RecyclerView.Adapter<HomeGuestAdapter.CustomHolder>() {
 
@@ -64,10 +64,15 @@ class HomeGuestAdapter(
         val guestName: TextView = view.itemGuestTxtName
         val guestFallbackName: TextView = view.itemGuestTxtNameFallback
 
-        fun bind(guest: GuestVO, listener: HomeGeneralClickListener) {
+        fun bind(guest: GuestVO, listener: HomeGuestAdapterListener) {
             itemView.setOnClickListener {
-                listener.onAdapterItemClicked(guest.id)
+                listener.onItemClicked(guest.id)
             }
         }
+    }
+
+    interface HomeGuestAdapterListener {
+
+        fun onItemClicked(guestId: Int)
     }
 }

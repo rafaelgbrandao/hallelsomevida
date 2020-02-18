@@ -17,5 +17,10 @@ val presentationModule = module {
 
     viewModel { AccessViewModel(get(), get(named(PDISPATCHER))) }
 
-    viewModel { HomeViewModel(get(), get(), get(named(PDISPATCHER))) }
+    viewModel { HomeViewModel(
+        eventContentUseCase = get(),
+        guestUseCase = get(),
+        sponsorUseCase = get(),
+        dispatchers = get(named(PDISPATCHER)))
+    }
 }

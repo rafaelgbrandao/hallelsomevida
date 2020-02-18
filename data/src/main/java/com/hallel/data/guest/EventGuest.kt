@@ -11,9 +11,9 @@ data class EventGuest(
    @ColumnInfo(name = COLUMN_PARTICIPANT_ID) val participantId: Int
 ) {
     companion object {
-        const val TABLE_NAME = "event_participant"
+        const val TABLE_NAME = "event_guest"
         const val COLUMN_ID = "id"
         const val COLUMN_EVENT_ID = "event_id"
-        const val COLUMN_PARTICIPANT_ID = "participant_id"
+        const val COLUMN_PARTICIPANT_ID = "guest_id"
     }
 }

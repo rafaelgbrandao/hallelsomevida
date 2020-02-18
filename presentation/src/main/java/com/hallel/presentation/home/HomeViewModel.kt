@@ -7,6 +7,8 @@ import com.hallel.domain.event.EventContentUseCase
 import com.hallel.domain.event.EventVO
 import com.hallel.domain.guest.GuestUseCase
 import com.hallel.domain.guest.GuestVO
+import com.hallel.domain.sponsor.SponsorUseCase
+import com.hallel.domain.sponsor.SponsorVO
 import com.hallel.presentation.base.BaseViewModel
 import com.hallel.presentation.utils.CustomDispatchers
 import kotlinx.coroutines.flow.collect
@@ -15,6 +17,7 @@ import kotlinx.coroutines.launch
 class HomeViewModel(
     private val eventContentUseCase: EventContentUseCase,
     private val guestUseCase: GuestUseCase,
+    private val sponsorUseCase: SponsorUseCase,
     private val dispatchers: CustomDispatchers
 ): BaseViewModel() {
 
@@ -29,6 +32,12 @@ class HomeViewModel(
 
     fun noGuestAvailableForEvent(): LiveData<Unit> = lvNoGuestAvailableForEvent
     private val lvNoGuestAvailableForEvent = MutableLiveData<Unit>()
+
+    fun hasSponsorAvailableForEvent(): LiveData<List<SponsorVO>> = lvHasSponsorAvailableForEvent
+    private val lvHasSponsorAvailableForEvent = MutableLiveData<List<SponsorVO>>()
+
+    fun noSponsorAvailableForEvent(): LiveData<Unit> = lvNoSponsorAvailableForEvent
+    private val lvNoSponsorAvailableForEvent = MutableLiveData<Unit>()
 
     fun onLoadEventContent() {
         viewModelScope.launch(dispatchers.io) {
@@ -46,6 +55,17 @@ class HomeViewModel(
                 when {
                     guestList.isEmpty() -> lvNoGuestAvailableForEvent.postValue(Unit)
                     else -> lvHasGuestAvailableForEvent.postValue(guestList)
+                }
+            }
+        }
+    }
+
+    fun onLoadSponsors(eventId: Int) {
+        viewModelScope.launch(dispatchers.io) {
+            sponsorUseCase.getSponsorsByEventId(eventId, dispatchers.io).collect{ sponsorsList ->
+                when {
+                    sponsorsList.isEmpty() -> lvNoSponsorAvailableForEvent.postValue(Unit)
+                    else -> lvHasSponsorAvailableForEvent.postValue(sponsorsList)
                 }
             }
         }

@@ -4,7 +4,6 @@ import com.hallel.data.BuildConfig
 import com.hallel.data.database.HallelDatabase
 import com.hallel.data.factory.DatabaseFactory
 import com.hallel.data.factory.createRoomDb
-import com.hallel.data.user.UserDao
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -20,5 +19,7 @@ val dataModule = module {
     single { get<HallelDatabase>().eventContentDao() }
 
     single { get<HallelDatabase>().guestDao() }
+
+    single { get<HallelDatabase>().sponsorDao() }
 
 }

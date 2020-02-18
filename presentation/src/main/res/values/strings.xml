@@ -30,6 +30,11 @@
     <string name="access_txt_unchecked_privacy_policy_text">Para realizar o cadastro, é necessário aceitar a politica de privacidade</string>
     <string name="access_txt_user_not_registered">Ops! Não encontramos seu cadastro.\nRegistre para poder acessar o app</string>
     <string name="access_txt_access_subtitle">Informe seu email para poder acessar</string>
+
+    <!-- Home -->
     <string name="title_home">Home</string>
+
+    <!-- General -->
+    <string name="open_link_error">Ops! Link indisponível no momento</string>
 
 </resources>

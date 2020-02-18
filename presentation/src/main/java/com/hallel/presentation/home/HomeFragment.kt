@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.hallel.presentation.R
 import com.hallel.presentation.base.BaseFragment
 import com.hallel.presentation.extensions.observe
+import com.hallel.presentation.home.adapter.HomeGuestAdapter
+import com.hallel.presentation.home.adapter.HomeSponsorAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.ext.android.inject
 
@@ -35,6 +37,7 @@ class HomeFragment: BaseFragment() {
         setActionBarVisible(true)
         setActionBarTitle(getString(R.string.title_home))
         homeRVParticipants.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        homeRVSponsors.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }
 
     private fun initObservers() {
@@ -44,6 +47,7 @@ class HomeFragment: BaseFragment() {
             eventVO.eventImage?.let { setBanner(it) }
             eventVO.id?.let {
                 viewModel.onLoadEventGuests(it)
+                viewModel.onLoadSponsors(it)
             } ?: showToast("no Id")
         }
 
@@ -58,12 +62,28 @@ class HomeFragment: BaseFragment() {
         viewModel.hasGuestAvailableForEvent().observe(this) {
             homeRVParticipants.adapter = HomeGuestAdapter(
                 guestList = it,
-                listener = object : HomeGeneralClickListener {
-                    override fun onAdapterItemClicked(itemId: Int) {
+                listener = object :
+                    HomeGuestAdapter.HomeGuestAdapterListener {
+                    override fun onItemClicked(guestId: Int) {
                         showToast("Navegar para a programação assim que criar a tela")
                     }
                 }
             )
+        }
+
+        viewModel.hasSponsorAvailableForEvent().observe(this) {
+            homeRVSponsors.adapter = HomeSponsorAdapter (
+                sponsorList = it,
+                listener = object : HomeSponsorAdapter.HomeSponsorAdapterListener {
+                    override fun onItemClicked(sponsorLink: String?) {
+                        redirectDeepLink(sponsorLink)
+                    }
+                }
+            )
+        }
+
+        viewModel.noSponsorAvailableForEvent().observe(this) {
+            showToast("Ops...Não há patrocinadores no momento")
         }
     }
 

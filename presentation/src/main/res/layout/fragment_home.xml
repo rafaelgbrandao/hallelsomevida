@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/homeRVParticipants"
+        app:layout_constraintBottom_toTopOf="@+id/homeRVSponsors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -40,14 +40,25 @@
         tools:text="Subtitle" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRVSponsors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#034"
+        app:layout_constraintBottom_toTopOf="@+id/homeRVParticipants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_sponsor"
+        tools:orientation="horizontal" />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRVParticipants"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#AAA"
         android:maxHeight="110dp"
-        tools:listitem="@layout/item_guest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_guest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
