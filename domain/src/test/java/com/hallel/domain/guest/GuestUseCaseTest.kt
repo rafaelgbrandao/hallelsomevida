@@ -5,13 +5,17 @@ import com.hallel.data.guest.GuestDao
 import com.hallel.domain.BaseTest
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.*
 import org.junit.Ignore
 import org.junit.Test
 
-class GuestUseCaseImplTest: BaseTest() {
+@ExperimentalCoroutinesApi
+@FlowPreview
+class GuestUseCaseTest: BaseTest() {
 
     @MockK
     private lateinit var guestDao: GuestDao
@@ -81,7 +85,6 @@ class GuestUseCaseImplTest: BaseTest() {
         }
     }
 
-    @Ignore("teste funciona se remover o flowOn do método")
     @Test
     fun givenEventId_whenLoadGuestsFromEvent_thenAssertEventHasGuest() {
         testDispatcher.runBlockingTest {
@@ -100,7 +103,6 @@ class GuestUseCaseImplTest: BaseTest() {
         }
     }
 
-    @Ignore("teste funciona se remover o flowOn do método")
     @Test
     fun givenEventId_whenLoadGuestsFromEvent_thenAssertEventHasNoGuest() {
         testDispatcher.runBlockingTest {
@@ -108,7 +110,7 @@ class GuestUseCaseImplTest: BaseTest() {
                 guestDao.getGuestsFromEvent(any())
             } returns null
 
-            val guestVOList = useCase.getGuestsFromEvent(1, testDispatcher).take(1).first()
+            val guestVOList = useCase.getGuestsFromEvent(1, testDispatcher).first()
 
             assertEquals(emptyList<GuestVO>(), guestVOList)
         }
