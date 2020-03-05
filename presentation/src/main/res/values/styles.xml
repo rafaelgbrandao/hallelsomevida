@@ -42,6 +42,13 @@
         <item name="android:layout_marginBottom">@dimen/spacing8</item>
         <item name="android:layout_marginTop">@dimen/spacing16</item>
         <item name="android:background">@null</item>
+    </style>
 
+    <style name="HomeListTitle" parent="">
+        <item name="android:textColor">@color/blue_san_juan</item>
+        <item name="android:textSize">@dimen/font18</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">@dimen/spacing8</item>
+        <item name="android:layout_marginStart">@dimen/spacing8</item>
     </style>
 </resources>

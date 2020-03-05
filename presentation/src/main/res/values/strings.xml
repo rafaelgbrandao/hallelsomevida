@@ -33,6 +33,8 @@
 
     <!-- Home -->
     <string name="title_home">Home</string>
+    <string name="title_list_sponsor">Patrocinadores</string>
+    <string name="title_list_guest">Participantes</string>
 
     <!-- General -->
     <string name="open_link_error">Ops! Link indisponível no momento</string>

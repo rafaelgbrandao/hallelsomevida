@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/hallel_splash"
     android:orientation="vertical">
 
     <ImageView
@@ -17,8 +18,7 @@
         app:layout_constraintBottom_toTopOf="@+id/homeRVSponsors"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hallel_splash" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/homeTxtTitle"
@@ -43,22 +43,30 @@
         android:id="@+id/homeRVSponsors"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#034"
-        app:layout_constraintBottom_toTopOf="@+id/homeRVParticipants"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_sponsor"
         tools:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/HomeListTitle"
+        android:text="@string/title_list_guest"
+        app:layout_constraintBottom_toTopOf="@+id/homeRVParticipants"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRVParticipants"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#AAA"
         android:maxHeight="110dp"
+        android:paddingLeft="@dimen/spacing2"
+        android:paddingRight="@dimen/spacing2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_guest" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
