@@ -9,6 +9,9 @@ import com.hallel.data.eventContent.EventContentDao
 import com.hallel.data.guest.Guest
 import com.hallel.data.guest.GuestDao
 import com.hallel.data.guest.EventGuest
+import com.hallel.data.menu.EventMenu
+import com.hallel.data.menu.Menu
+import com.hallel.data.menu.MenuDao
 import com.hallel.data.sponsor.EventSponsor
 import com.hallel.data.sponsor.Sponsor
 import com.hallel.data.sponsor.SponsorDao
@@ -17,9 +20,9 @@ import com.hallel.data.user.UserDao
 
 @Suppress("SpellCheckingInspection")
 @Database(
-    entities = [User::class, Event::class, EventContent::class, Guest::class,
-        EventGuest::class, Sponsor::class, EventSponsor::class],
-    version = 3
+    entities = [User::class, Event::class, EventContent::class, Guest::class, EventGuest::class,
+        Sponsor::class, EventSponsor::class, Menu::class, EventMenu::class],
+    version = 4
 )
 
 abstract class HallelDatabase : RoomDatabase() {
@@ -34,13 +37,5 @@ abstract class HallelDatabase : RoomDatabase() {
 
     abstract fun sponsorDao(): SponsorDao
 
-    /*abstract fun partnerDao(): PartnerDao
-
-    abstract fun participantDao(): ParticipantDao
-
-
-
-
-
-    abstract fun menuDao(): MenuDao*/
+    abstract fun menuDao(): MenuDao
 }

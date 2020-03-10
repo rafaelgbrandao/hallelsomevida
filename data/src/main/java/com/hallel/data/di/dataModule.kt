@@ -22,4 +22,6 @@ val dataModule = module {
 
     single { get<HallelDatabase>().sponsorDao() }
 
+    single { get<HallelDatabase>().menuDao() }
+
 }
