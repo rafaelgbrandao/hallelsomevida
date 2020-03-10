@@ -1,12 +1,14 @@
 package com.hallel.presentation.base
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.lang.Exception
 
 open class BaseViewModel: ViewModel() {
+
+    var activeEvent = 0
+        private set
 
     fun showRequestError(): LiveData<Exception> = lvRequestError
     private val lvRequestError = MutableLiveData<Exception>()
@@ -18,5 +20,9 @@ open class BaseViewModel: ViewModel() {
             is Exception ->
             else -> GenericError
         }*/
+    }
+
+    fun updateActiveEvent(eventId: Int) {
+        activeEvent = eventId
     }
 }

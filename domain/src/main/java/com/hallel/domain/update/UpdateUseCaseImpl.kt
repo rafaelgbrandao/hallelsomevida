@@ -14,7 +14,10 @@ class UpdateUseCaseImpl: UpdateUseCase {
         return 0
     }
 
-    override fun onSearchForContentUpdates(dispatcher: CoroutineDispatcher): Flow<Pair<Int, Int>> {
+    override fun onSearchForContentUpdates(
+        dispatcher: CoroutineDispatcher,
+        eventId: Int
+    ): Flow<Pair<Int, Int>> {
         return flow {
             var count = 0
             val total = 10

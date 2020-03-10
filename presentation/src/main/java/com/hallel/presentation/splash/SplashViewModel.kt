@@ -3,6 +3,7 @@ package com.hallel.presentation.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.hallel.domain.event.EventContentUseCase
 import com.hallel.domain.update.UpdateUseCase
 import com.hallel.domain.user.UserUseCase
 import com.hallel.presentation.base.BaseViewModel
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
+    private val eventContentUseCase: EventContentUseCase,
     private val updateUseCase: UpdateUseCase,
     private val userUseCase: UserUseCase,
     private val dispatchers: CustomDispatchers
@@ -36,11 +38,23 @@ class SplashViewModel(
     fun navigateToNextScreen(): LiveData<Event<Boolean>> = lvNavigateToNextScreen
     private val lvNavigateToNextScreen = MutableLiveData<Event<Boolean>>()
 
+    fun activeEventWasUpdate(): LiveData<Unit> = lvActiveEventWasUpdate
+    private val lvActiveEventWasUpdate = MutableLiveData<Unit>()
+
+    fun onSetActiveEvent() {
+        viewModelScope.launch(dispatchers.io) {
+            eventContentUseCase.getActiveEvent(dispatchers.io).collect {
+                updateActiveEvent(it)
+                lvActiveEventWasUpdate.postValue(Unit)
+            }
+        }
+    }
+
     @FlowPreview
     fun onSearchForUpdate() {
         viewModelScope.launch(dispatchers.main) {
             lvStartContentUpdateVerification.postValue(Unit)
-            updateUseCase.onSearchForContentUpdates(dispatchers.io).collect {
+            updateUseCase.onSearchForContentUpdates(dispatchers.io, activeEvent).collect {
                 lvContentUpdateProgress.postValue(it)
             }
             lvFinishUpdateContentVerification.postValue(Unit)

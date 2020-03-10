@@ -20,7 +20,7 @@ val domainModule = module {
 
     single<UserUseCase> { UserUseCaseImpl(get()) }
 
-    single<EventContentUseCase> { EventContentUseCaseImpl(get()) }
+    single<EventContentUseCase> { EventContentUseCaseImpl(get(), get()) }
 
     single<GuestUseCase> { GuestUseCaseImpl(get()) }
 

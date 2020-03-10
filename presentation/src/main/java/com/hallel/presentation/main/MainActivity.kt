@@ -8,9 +8,12 @@ import com.google.android.material.navigation.NavigationView
 import com.hallel.presentation.R
 import com.hallel.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

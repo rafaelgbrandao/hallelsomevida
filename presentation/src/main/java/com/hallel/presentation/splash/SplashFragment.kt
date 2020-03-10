@@ -19,7 +19,7 @@ class SplashFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setActionBarVisible(false)
         startObservers()
-        viewModel.onAppSuggestedVersionCheck(BuildConfig.VERSION_CODE)
+        viewModel.onSetActiveEvent()
     }
 
     override fun onCreateView(
@@ -72,6 +72,10 @@ class SplashFragment: BaseFragment() {
                     else -> R.id.action_splashFragment_to_accessFragment
                 }
             )
+        }
+
+        viewModel.activeEventWasUpdate().observe(this) {
+            viewModel.onAppSuggestedVersionCheck(BuildConfig.VERSION_CODE)
         }
     }
 
