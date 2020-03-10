@@ -1,9 +1,11 @@
 package com.hallel.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.observe
 import com.google.android.material.navigation.NavigationView
 import com.hallel.presentation.R
 import com.hallel.presentation.base.BaseActivity
@@ -19,6 +21,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         buildNavigationMenu()
+        initObservers()
     }
 
     private fun buildNavigationMenu() {
@@ -56,5 +59,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             else -> main_drawner_layout.openDrawer(GravityCompat.START)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun initObservers() {
+        viewModel.updateMenuItems().observe(this) { menuList ->
+            menuList?.let{ menu_list ->
+                main_navigation_menu.menu.apply {
+                    clear()
+                    menu_list.map {
+                        add(it.name)
+                    }
+                }
+            } ?: main_navigation_menu.inflateMenu(R.menu.nav_menu)
+        }
+    }
+
+    fun getEventMenu() {
+        viewModel.onGetEventMenuItems()
     }
 }

@@ -7,5 +7,7 @@ interface EventContentUseCase {
 
     fun getActiveEvent(dispatcher: CoroutineDispatcher): Flow<Int>
 
+    fun getEventMenu(dispatcher: CoroutineDispatcher): Flow<List<MenuVO>?>
+
     fun getEventContent(dispatcher: CoroutineDispatcher): Flow<EventVO?>
 }

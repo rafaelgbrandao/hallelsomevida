@@ -38,18 +38,6 @@ class SplashViewModel(
     fun navigateToNextScreen(): LiveData<Event<Boolean>> = lvNavigateToNextScreen
     private val lvNavigateToNextScreen = MutableLiveData<Event<Boolean>>()
 
-    fun activeEventWasUpdate(): LiveData<Unit> = lvActiveEventWasUpdate
-    private val lvActiveEventWasUpdate = MutableLiveData<Unit>()
-
-    fun onSetActiveEvent() {
-        viewModelScope.launch(dispatchers.io) {
-            eventContentUseCase.getActiveEvent(dispatchers.io).collect {
-                updateActiveEvent(it)
-                lvActiveEventWasUpdate.postValue(Unit)
-            }
-        }
-    }
-
     @FlowPreview
     fun onSearchForUpdate() {
         viewModelScope.launch(dispatchers.main) {

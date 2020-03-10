@@ -21,8 +21,4 @@ open class BaseViewModel: ViewModel() {
             else -> GenericError
         }*/
     }
-
-    fun updateActiveEvent(eventId: Int) {
-        activeEvent = eventId
-    }
 }

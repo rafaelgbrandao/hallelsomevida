@@ -8,7 +8,9 @@ import com.hallel.presentation.BuildConfig
 import com.hallel.presentation.R
 import com.hallel.presentation.base.BaseFragment
 import com.hallel.presentation.extensions.*
+import com.hallel.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_splash.*
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
 
 class SplashFragment: BaseFragment() {
@@ -19,7 +21,7 @@ class SplashFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setActionBarVisible(false)
         startObservers()
-        viewModel.onSetActiveEvent()
+        viewModel.onAppSuggestedVersionCheck(BuildConfig.VERSION_CODE)
     }
 
     override fun onCreateView(
@@ -66,6 +68,7 @@ class SplashFragment: BaseFragment() {
 
         viewModel.navigateToNextScreen().observe(this) { eventUser ->
             val hasUser = eventUser.getContentIfNotHandled() ?: false
+            (activity as MainActivity).getEventMenu()
             navigateToScreen(
                 when {
                     hasUser -> R.id.action_splashFragment_to_homeFragment
@@ -73,12 +76,9 @@ class SplashFragment: BaseFragment() {
                 }
             )
         }
-
-        viewModel.activeEventWasUpdate().observe(this) {
-            viewModel.onAppSuggestedVersionCheck(BuildConfig.VERSION_CODE)
-        }
     }
 
+    @FlowPreview
     private fun searchForUpdates() {
         viewModel.onSearchForUpdate()
     }
