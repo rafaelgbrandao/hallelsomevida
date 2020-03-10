@@ -17,6 +17,8 @@ open class BaseFragment: Fragment() {
 
     fun setActionBarTitle(title: String) = baseActivity?.setActionBarTitle(title)
 
+    fun enableLeftMenu(isMenuEnable: Boolean) = baseActivity?.enableLeftMenu(isMenuEnable)
+
     fun showAlertDialog(
         title: String?,
         message: String?,

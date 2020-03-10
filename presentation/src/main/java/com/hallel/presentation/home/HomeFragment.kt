@@ -36,6 +36,7 @@ class HomeFragment: BaseFragment() {
     private fun setLayoutConfigs() {
         setActionBarVisible(true)
         setActionBarTitle(getString(R.string.title_home))
+        enableLeftMenu(true)
         homeRVParticipants.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         homeRVSponsors.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
     }

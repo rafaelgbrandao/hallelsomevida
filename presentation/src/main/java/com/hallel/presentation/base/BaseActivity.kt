@@ -19,6 +19,11 @@ open class BaseActivity: AppCompatActivity() {
         supportActionBar?.title = title
     }
 
+    fun enableLeftMenu(isMenuEnable: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(isMenuEnable)
+        supportActionBar?.setHomeButtonEnabled(isMenuEnable)
+    }
+
     fun showAlertDialog(
         title: String?,
         message: String?,
