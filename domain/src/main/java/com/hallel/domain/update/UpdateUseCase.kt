@@ -9,5 +9,5 @@ interface UpdateUseCase {
     fun onSearchForAppVersion(): Int
 
     @FlowPreview
-    fun onSearchForContentUpdates(dispatcher: CoroutineDispatcher, eventId: Int): Flow<Pair<Int, Int>>
+    fun onSearchForContentUpdates(dispatcher: CoroutineDispatcher): Flow<Pair<Int, Int>>
 }

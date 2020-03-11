@@ -1,12 +1,19 @@
 package com.hallel.data.eventContent
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.hallel.data.event.Event
 
-@Entity(tableName = EventContent.TABLE_NAME)
+@Entity(
+    tableName = EventContent.TABLE_NAME,
+    foreignKeys = [
+        ForeignKey(
+            entity = Event::class,
+            parentColumns = arrayOf(Event.COLUMN_ID),
+            childColumns = arrayOf(EventContent.COLUMN_EVENT_ID),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class EventContent(
     @PrimaryKey @ColumnInfo(name = COLUMN_ID) val id: Int,
     @ColumnInfo(name = COLUMN_EVENT_ID) val eventId: Int,

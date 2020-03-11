@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface EventContentUseCase {
 
-    fun getActiveEvent(dispatcher: CoroutineDispatcher): Flow<Int>
+    fun getActiveEvent(dispatcher: CoroutineDispatcher): Flow<Int?>
 
     fun getEventMenu(dispatcher: CoroutineDispatcher): Flow<List<MenuVO>?>
 

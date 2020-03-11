@@ -15,8 +15,7 @@ class UpdateUseCaseImpl: UpdateUseCase {
     }
 
     override fun onSearchForContentUpdates(
-        dispatcher: CoroutineDispatcher,
-        eventId: Int
+        dispatcher: CoroutineDispatcher
     ): Flow<Pair<Int, Int>> {
         return flow {
             var count = 0

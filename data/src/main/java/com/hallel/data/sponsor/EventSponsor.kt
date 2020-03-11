@@ -2,9 +2,27 @@ package com.hallel.data.sponsor
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.hallel.data.event.Event
 
-@Entity(tableName = EventSponsor.TABLE_NAME)
+@Entity(
+    tableName = EventSponsor.TABLE_NAME,
+    foreignKeys = [
+        ForeignKey(
+            entity = Event::class,
+            parentColumns = arrayOf(Event.COLUMN_ID),
+            childColumns = arrayOf(EventSponsor.COLUMN_EVENT_ID),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = Sponsor::class,
+            parentColumns = arrayOf(Sponsor.COLUMN_ID),
+            childColumns = arrayOf(EventSponsor.COLUMN_SPONSOR_ID),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class EventSponsor(
     @PrimaryKey @ColumnInfo(name = COLUMN_ID) val id: Int,
     @ColumnInfo(name = COLUMN_EVENT_ID) val eventId: Int,

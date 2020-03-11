@@ -18,9 +18,9 @@ class EventContentUseCaseImpl(
     private val menuDao: MenuDao
 ): EventContentUseCase {
 
-    override fun getActiveEvent(dispatcher: CoroutineDispatcher): Flow<Int> {
+    override fun getActiveEvent(dispatcher: CoroutineDispatcher): Flow<Int?> {
         return flow {
-            val eventId = eventDao.getActiveEvent()?.id ?: 0
+            val eventId = eventDao.getActiveEvent()?.id
             emit(eventId)
         }.flowOn(dispatcher)
     }
