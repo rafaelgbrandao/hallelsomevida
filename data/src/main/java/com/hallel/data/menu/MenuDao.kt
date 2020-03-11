@@ -25,6 +25,7 @@ interface MenuDao {
                 "ON m.${Menu.COLUMN_ID} = em.${EventMenu.COLUMN_MENU_ID} " +
                 "INNER JOIN ${Event.TABLE_NAME} as e " +
                 "ON em.${EventMenu.COLUMN_EVENT_ID} = e.${Event.COLUMN_ID} " +
-                "where e.${Event.COLUMN_ACTIVE} = 1"
+                "where e.${Event.COLUMN_ACTIVE} = 1 " +
+                "ORDER BY em.${EventMenu.COLUMN_POSITION} ASC"
     }
 }

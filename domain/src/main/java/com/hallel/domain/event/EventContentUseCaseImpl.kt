@@ -59,7 +59,8 @@ class EventContentUseCaseImpl(
         return menuList.map {
             MenuVO(
                 id = it.id,
-                name = it.name
+                name = it.name,
+                resourceName = it.resourceName
             )
         }
     }
