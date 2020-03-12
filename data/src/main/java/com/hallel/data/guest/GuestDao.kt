@@ -12,7 +12,7 @@ interface GuestDao {
     companion object {
         const val GET_GUESTS_FROM_EVENT = "Select p.* from ${Guest.TABLE_NAME} as p" +
                 " INNER JOIN ${EventGuest.TABLE_NAME} as ep " +
-                " ON p.${Guest.COLUMN_ID} = ep.${EventGuest.COLUMN_PARTICIPANT_ID}" +
+                " ON p.${Guest.COLUMN_ID} = ep.${EventGuest.COLUMN_GUEST_ID}" +
                 " where ep.${EventGuest.COLUMN_EVENT_ID} ="
     }
 }

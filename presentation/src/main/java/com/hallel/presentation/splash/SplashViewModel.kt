@@ -42,7 +42,7 @@ class SplashViewModel(
     fun onSearchForUpdate() {
         viewModelScope.launch(dispatchers.main) {
             lvStartContentUpdateVerification.postValue(Unit)
-            updateUseCase.onSearchForContentUpdates(dispatchers.io, activeEvent).collect {
+            updateUseCase.onSearchForContentUpdates(dispatchers.io).collect {
                 lvContentUpdateProgress.postValue(it)
             }
             lvFinishUpdateContentVerification.postValue(Unit)

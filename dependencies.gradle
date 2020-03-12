@@ -1,8 +1,8 @@
 //Android
 def appCompatxVersion = "1.0.2"
 def constraintLayoutVersion = "1.1.3"
-def navigationVersion = "2.0.0"
-def room_version = "2.1.0"
+def navigationVersion = '2.2.1'
+def room_version = '2.2.4'
 def cardview_version = "1.0.0"
 def material_version = "1.0.0"
 
@@ -10,11 +10,11 @@ def material_version = "1.0.0"
 def input_mask_version = "5.0.0"
 
 //Image
-def glide_version = "4.10.0"
+def glide_version = '4.11.0'
 
 //Kotlin
 def kotlin_version = '1.3.61'
-def kotlin_lifecycle_version = '2.1.0'
+def kotlin_lifecycle_version = '2.2.0'
 
 //Dependency injection
 def koin_version = '2.0.1'
@@ -35,12 +35,12 @@ def junitx_version = '1.1.1'
 def runner_version = '1.2.0'
 def espresso_version = '3.2.0'
 def ui_automator_version = '2.2.0'
-def rules_version = '1.3.0-alpha02'
-def mockk_version = '1.9.2'
+def rules_version = '1.3.0-alpha04'
+def mockk_version = '1.9.3.kotlin12'
 def core_test_version = '1.1.1'
 
 ///Gradle
-def gradle_version = '3.5.3'
+def gradle_version = '3.6.1'
 
 ext.generalDeps = [
         appcompatx              : "androidx.appcompat:appcompat:$appCompatxVersion",
